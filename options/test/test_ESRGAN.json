@@ -1,0 +1,38 @@
+{
+  "name": "SRs"
+  , "model": "sr"
+  , "scale": 4
+  , "gpu_ids": [0, 1, 2, 3]
+
+  , "datasets": {
+    "test_1": { // the 2nd test dataset
+      "name": "test"
+      , "mode": "LR"
+      , "dataroot_LR": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/score/test_LR"
+    }
+    ,"test_2": { // the 2nd test dataset
+      "name": "val"
+      , "mode": "LRHR"
+      , "dataroot_HR": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/score/val_HR"
+      , "dataroot_LR": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/score/val_LR"
+    }
+  }
+
+  , "path": {
+    "root": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN"
+    , "pretrain_model_G": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/mytrained/bestG.pth"
+    , "results_root": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/SRs"
+  }
+
+  , "network_G": {
+    "which_model_G": "RRDB_net"
+    , "norm_type": null
+    , "mode": "CNA"
+    , "nf": 64
+    , "nb": 24
+    , "in_nc": 3
+    , "out_nc": 3
+    , "gc": 32
+    , "group": 1
+  }
+}

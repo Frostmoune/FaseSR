@@ -1,0 +1,89 @@
+{
+  "name": "Finetuned_PSNR_RRDB2"
+  , "use_tb_logger": true
+  , "model":"sr"
+  , "scale": 4
+  , "gpu_ids": [0, 1, 2, 3]
+
+  , "datasets": {
+    "train": {
+      "name": "FFHQ"
+      , "mode": "LRHR"
+      , "dataroot_HR": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/dataset/FFHQ/HR1"
+      , "dataroot_LR": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/dataset/FFHQ/LR1"
+      , "subset_file": null
+      , "use_shuffle": true
+      , "n_workers": 8
+      , "batch_size": 40
+      , "HR_size": 96
+      , "use_flip": true
+      , "use_rot": true
+    }
+    , "val": {
+      "name": "VAL"
+      , "mode": "LRHR"
+      , "dataroot_HR": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/score/val_HR1"
+      , "dataroot_LR": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/score/val_LR1"
+    }
+  }
+
+  , "path": {
+    "root": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN"
+    //, "resume_state": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/experiments/Cos_RRDB_NoNorm/training_state/74250.state"
+    , "pretrain_model_G": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/mytrained/bestG.pth"
+  //   , "pretrain_model_D": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/ESRGAN-master/pretrained/75_D.pth"
+  }
+
+  , "network_G": {
+    "which_model_G": "RRDB_net"
+    , "norm_type": null
+    , "mode": "CNA"
+    , "nf": 64
+    , "nb": 24
+    , "in_nc": 3
+    , "out_nc": 3
+    , "gc": 32
+    , "group": 1
+  }
+  , "network_D": {
+    "which_model_D": "discriminator_vgg_96_SN"
+    , "norm_type": "batch"
+    , "act_type": "leakyrelu"
+    , "mode": "CNA"
+    , "nf": 64
+    , "in_nc": 3
+  }
+  , "network_F": {
+    "mode": "Sphere20a",
+    "path": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/pretrained/sphere20a_20171020.pth",
+    "norm": 0
+  }
+
+  , "train": {
+    "lr_G": 4e-5
+    , "weight_decay_G": 0
+    , "beta1_G": 0.9
+    , "lr_D": 2e-5
+    , "weight_decay_D": 0
+    , "beta1_D": 0.9
+    , "lr_scheme": "MultiStepLR"
+    , "lr_steps": [2690]
+    , "lr_gamma": 0.5
+
+    , "pixel_criterion": "l1"
+    , "pixel_weight": 1
+    , "feature_criterion": "cos"
+    , "feature_weight": 0
+    , "gan_type": "vanilla"
+    , "gan_weight": 5e-3
+
+    , "manual_seed": 0
+    , "niter": 8040
+    , "val_freq": 269
+  }
+
+  , "logger": {
+    "print_freq": 134
+    , "save_checkpoint_freq": 269
+  }
+}

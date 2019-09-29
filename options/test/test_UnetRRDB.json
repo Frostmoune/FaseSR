@@ -1,0 +1,28 @@
+{
+  "name": "CelebA"
+  , "model": "sr2hr"
+  , "scale": 4
+  , "gpu_ids": [0, 1, 2, 3]
+
+  , "datasets": {
+    "test_2": { // the 2nd test dataset
+      "name": "UnetRRDB2"
+      , "mode": "SRHR"
+      , "dataroot_HR": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/dataset/CelebA/VALHR"
+      , "dataroot_SR": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/results/CelebA/VALSR_RRDBUnet7"
+    }
+  }
+
+  , "path": {
+    "root": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN"
+    , "pretrain_model_G": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/mytrained/bestUnetRRDB2NoNorm.pth"
+    , "results_root": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/results"
+  }
+
+  , "network_G": {
+    "which_model_G": "Unet_RRDB2"
+    , "nf": 64
+    , "in_nc": 3
+    , "out_nc": 3
+  }
+}

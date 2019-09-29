@@ -1,0 +1,32 @@
+{
+  "name": "SRs"
+  , "model": "sr"
+  , "scale": 4
+  , "gpu_ids": [0, 1, 2, 3]
+
+  , "datasets": {
+    "test_1": { // the 2nd test dataset
+      "name": "test2"
+      , "mode": "LR"
+      , "dataroot_LR": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/score/test_LR2"
+    }
+  }
+
+  , "path": {
+    "root": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN"
+    , "pretrain_model_G": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/mytrained/bestG2.pth"
+    , "results_root": "/GPUFS/nsccgz_yfdu_16/ouyry/SISRC/FaceSR-ESRGAN/SRs"
+  }
+
+  , "network_G": {
+    "which_model_G": "RRDB_net"
+    , "norm_type": null
+    , "mode": "CNA"
+    , "nf": 64
+    , "nb": 24
+    , "in_nc": 3
+    , "out_nc": 3
+    , "gc": 32
+    , "group": 1
+  }
+}
